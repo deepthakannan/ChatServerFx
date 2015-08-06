@@ -1,0 +1,14 @@
+{
+  "name": "fxWsChat",
+  "version": "0.0.0",
+  "description": "fxWsChat",
+  "main": "server.js",
+  "author": {
+    "name": "drangarajan",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "ws": "^0.7.2"
+  }
+}

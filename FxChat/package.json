@@ -1,0 +1,16 @@
+{
+  "name": "FxChat",
+  "version": "0.0.0",
+  "description": "FxChat",
+  "main": "server.js",
+  "author": {
+    "name": "drangarajan",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6",
+    "underscore": "^1.8.3",
+    "ws": "^0.7.2"
+  }
+}
