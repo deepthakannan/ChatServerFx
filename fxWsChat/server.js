@@ -38,6 +38,8 @@ wss.on('connection', function (ws) {
 
     ws.on('close', function () {
         console.log('stopping client interval');
+        removeElement(chatters, ws.name);
+        wss.removeUserBroadcast(ws.name);
     });
 });
 
@@ -47,7 +49,7 @@ wss.broadcast = function broadcast(message, name) {
             code: "chat",
             user: name,
             text: message
-        }));
+        }), function () { /* ignore errors */ });
     });
 };
 
@@ -56,7 +58,16 @@ wss.newUserBroadcast = function newUserBroadcast(name) {
         client.send(JSON.stringify({
             code: "newUser",
             user: name
-        }));
+        }), function () { /* ignore errors */ });
+    });
+};
+
+wss.removeUserBroadcast = function removeUserBroadcast(name) {
+    wss.clients.forEach(function each(client) {
+        client.send(JSON.stringify({
+            code: "removeUser",
+            user: name
+        }), function () { /* ignore errors */ });
     });
 };
 
@@ -68,3 +79,11 @@ var parseJson = function (data) {
         return null;
     }
 }
+
+var removeElement = function (array, element) {
+    var index = array.indexOf(element);
+    if (index > -1) {
+        array.splice(index, 1);
+    }
+}
+
